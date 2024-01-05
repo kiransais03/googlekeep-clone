@@ -1,0 +1,42 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 1rem;
+    column-gap:0.3rem;
+}
+
+.navleft {
+    display: flex;
+    align-items: center;
+    column-gap: 0.7rem;
+}
+
+.navcentre {
+    display: flex;
+    background-color: #eff3f6;
+    border: 2px solid #eff3f6;
+    border-radius: 0.5rem;
+    min-width: 40vw;
+    z-index: 1;
+}
+
+.navcentre:focus-within {
+    background-color: white;
+    border: 1px solid #eff3f6;
+    box-shadow: 0 0 5px grey;
+    min-width: 40vw;
+    z-index: 1;
+}
+
+.searchiconbtn {
+    background-color: inherit;
+    border-radius:50%;
+    border: none;
+    cursor: pointer;
+}
+
+
+.searchiconbtn:hover {
+    background-color: #eff3f6;
+}

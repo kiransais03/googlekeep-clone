@@ -1,0 +1,11 @@
+.roundbtn {
+    padding: 0.7rem;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background-color: white;
+}
+
+.roundbtn:hover {
+    background-color: #eff3f6;
+}
