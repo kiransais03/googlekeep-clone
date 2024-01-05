@@ -1,10 +1,10 @@
 import React from 'react';
 import "./roundbutton-styles.css";
 
-function Roundbutton  ({namecomp,clickfunction})  {
+function Roundbutton  ({namecomp,clickfunction,styles})  {
 
   return (
-    <button className='roundbtn' onClick={clickfunction}>{namecomp}</button>
+    <button className='roundbtn' style={styles} onClick={clickfunction}>{namecomp}</button>
   )
 }
 

@@ -28,7 +28,7 @@ function Navbar () {
           <Searchinput type={"search"} placeholder={"Search"} state={search} setState={setSearch}/>
         </div>
         <div className="navright">
-            <img src={Settingsicon} alt="settings"/>
+          <Roundbutton namecomp={<img src={Settingsicon} alt="settings"/>} />
         </div>
     </div>)
 }
