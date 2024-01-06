@@ -12,7 +12,7 @@
 }
 
 .createnoteinput::placeholder {
-    font-size: 18px;
+    font-size: 1rem;
 }
 
 .note-input:focus {
