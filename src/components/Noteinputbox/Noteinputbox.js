@@ -43,7 +43,7 @@ function Noteinputbox({ dispatchfunc, currId, setCurrId }) {
          <Noteuicomp notefocused={true} inputtitle={inputtitle} handlearchived={handlearchived} handleclose={handleAdd} setInputtitle={setInputtitle} inputtext={inputtext} setInputtext={setInputtext} pinselected={pinselected} setPinselected={setPinselected}/>
          :
       <div className="noteui" style={{border: "2px solid lightgrey"}} onFocus={()=>{contextobj.setCreatenotefocused(true)}}>
-        <textarea className='note-input createnoteinput' style={{height:"20px"}} placeholder="+ Take a note..."  />
+        <textarea className='note-input createnoteinput' style={{height:"20px"}} placeholder="+ Take notes..."  />
       </div>
       }
       
