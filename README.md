@@ -11,9 +11,14 @@
 ### Features Implemented in this App :
 
 --This is Google Keep Clone it is a Note-taking service
+
 --Hamburger menu with options Create Note,Search notes,Archives,Edit Labels,Trash
+
 --Note Background Colour Changer
+
 --Important Note Pinning
+
+--Delete and Archive Notes
 
 ### Steps Required To Run Applications :
 
