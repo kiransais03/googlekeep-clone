@@ -5,13 +5,7 @@ import Googlekeepcontext from '../../context/Googlekeepcontext';
 
 function Homepage() {
 
-  // let [refresh,setRefresh] = useState([])
-
   let contextobj = useContext(Googlekeepcontext);
-
-  // useEffect(()=>{
-  //   setRefresh([])
-  // },[contextobj])
 
   return (
     <div style={{textAlign:"center"}}>

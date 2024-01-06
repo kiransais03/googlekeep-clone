@@ -29,7 +29,6 @@ function Noteinputbox({ dispatchfunc, currId, setCurrId }) {
       trashed : trashed,
       notebgcolor:notebgcolor
     });
-    
     setCurrId((currId) => currId + 1);
     setInputtext("");
     setInputtitle("");

@@ -63,7 +63,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function Minidrawer() {
+export default function Minidrawer({handleClickOpen}) {
 
  const menuiconsarr = [Plusicon,Notesicon,Searchicon,Editlablesicon,Archiveicon,Trashicon]
 
@@ -105,6 +105,11 @@ export default function Minidrawer() {
           navigate('/trash');
         }
 
+        const openEditlabels = ()=>{
+            handleClickOpen();
+            handleDrawer(false);
+        }
+
   const handledraweritemclick = (text)=>{
      switch (text) {
       case "Create New Note" : newnotefunc();
@@ -117,6 +122,9 @@ export default function Minidrawer() {
       break;
 
       case "Trash" : gototrashpage();
+      break;
+
+      case "Edit Labels" : openEditlabels();
       break;
 
       default : return ;
