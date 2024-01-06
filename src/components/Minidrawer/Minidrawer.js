@@ -76,28 +76,64 @@ export default function Minidrawer() {
     if(open===false) {
       setOpen(true);
     }
+    //notclose===false || 
     else {
-        if(notclose===false || boolean===false) {
+        if(boolean===false) {
             console.log("hello")
            setOpen(false);
         }
     }
   };
   
-    let navigate = useNavigate();
+       let navigate = useNavigate();
 
        const newnotefunc = ()=>{
             navigate('/');
             contextobj.setCreatenotefocused(true)
          }
 
+        const gotoarchivepage = ()=>{
+          navigate('/archive');
+        }
+
+        const gotohomepage = ()=>{
+          navigate('/');
+          contextobj.setCreatenotefocused(false)
+        }
+
+        const gototrashpage = ()=>{
+          navigate('/trash');
+        }
+
   const handledraweritemclick = (text)=>{
      switch (text) {
       case "Create New Note" : newnotefunc();
       break;
 
+      case "Archive" : gotoarchivepage();
+      break;
+
+      case "Notes" : gotohomepage();
+      break;
+
+      case "Trash" : gototrashpage();
+      break;
+
       default : return ;
      }
+
+  }
+
+  const handleClick = (open)=>{
+      if(open===false)
+      {
+          // setNotclose(true);
+          handleDrawer(true);
+      }
+      else {
+          // setNotclose(false);
+          handleDrawer(false);
+      }
   }
 
   return (
@@ -105,26 +141,14 @@ export default function Minidrawer() {
       
       <Drawer variant="permanent" open={open}>
         <div className='navleft'>
-           <Roundbutton styles={{margin:"10px 8px"}} clickfunction={()=>{
-            if(open===false)
-            {
-                setNotclose(true);
-                handleDrawer(true);
-            }
-            else {
-                setNotclose(false);
-                handleDrawer(false);
-            }
-        }
-        } 
-            namecomp={<img src={Hamburgericon} alt="menu"/>} />
+           <Roundbutton styles={{margin:"10px 8px"}} clickfunction={(open)=>{handleClick(open)}} namecomp={<img src={Hamburgericon} alt="menu"/>} />
            <img width="40px" height="40px" style={{zIndex:"20"}} src={Keeplogo} alt="keeplogo"/>
           <h2 style={{color:"#5f6368",opacity:"1",fontWeight:"400"}}>Keep</h2>
         </div>
         <Divider />
         <List>
           {['Create New Note','Notes', 'Search Notes', 'Edit Labels','Archive','Trash'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }} onClick={()=>{handledraweritemclick(text)}} onMouseEnter={handleDrawer} onMouseLeave={handleDrawer}>
+            <ListItem key={text} disablePadding sx={{ display: 'block' }} onClick={()=>{handledraweritemclick(text);handleClick(open)}} onMouseEnter={handleDrawer} onMouseLeave={handleDrawer}>
               <ListItemButton
                 sx={{
                   minHeight: 48,

@@ -11,3 +11,7 @@
     background-color: #eff3f6;
 }
 
+.roundbtn:disabled {
+    opacity: 0.1;
+}
+
