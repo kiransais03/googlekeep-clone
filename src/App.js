@@ -14,7 +14,7 @@ function App() {
      <Navbar/>
      <Minidrawer/>
      <Routes>
-      <Route path="/" element={<Homepage/>}/>
+       <Route path="/" element={<Homepage/>}/>
      </Routes>
     </div>
   );

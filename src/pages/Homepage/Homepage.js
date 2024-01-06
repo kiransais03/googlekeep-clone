@@ -1,45 +1,41 @@
 import React,{useState,useReducer} from 'react';
 import Noteinputbox from "../../components/Noteinputbox/Noteinputbox";
-import Taskdisplay from "../../components/Taskdisplay/Taskdisplay";
+import Notesdisplay from "../../components/Notesdisplay/Notesdisplay";
 
 function Homepage() {
 
-    let intialData = [{ id: 1, text: "HI this is task", editing: false }];
+    let intialData = [{ id: 1,title:"Note 1", text: "Hi World",pinselected:false,archived:false},
+    { id: 2,title:"Note 85", text: "Lenovo",pinselected:true,archived:false}];
 
   let [currId, setCurrId] = useState(1);
 
-  let [taskarr, dispatchfunc] = useReducer(reducer, intialData);
+  let [notesarr, dispatchfunc] = useReducer(reducerfunc, intialData);
 
-    function reducer (state, action) {
+    function reducerfunc (state, action) {
       switch (action.type) {
         case "ADD_DATA":
         return [
           ...state,
           {
             id: currId,
+            title:action.title,
             text: action.text,
-            editing: false
+            pinselected:action.pinselected,
+            archived : action.archived
           }
         ];
-        break;
 
       case "EDIT_DATA":
-        return state.map((task) => {
-          if (task.id === action.id) {
+        return state.map((note) => {
+          if (note.id === action.id) {
             return action.obj;
           } else {
-            return task;
+            return note;
           }
         });
-        break;
-
+ 
       case "DELETE_DATA":
-        return state.filter((task) => {
-          if (task.id !== action.id) {
-            return task;
-          }
-        });
-        break;
+        return state.filter((note)=> note.id!==action.id)
 
       default:
         return state;
@@ -49,7 +45,7 @@ function Homepage() {
   return (
     <div style={{textAlign:"center"}}>
       <Noteinputbox dispatchfunc={dispatchfunc} currId={currId} setCurrId={setCurrId} />
-      <Taskdisplay dispatchfunc={dispatchfunc} taskarr={taskarr} />
+      <Notesdisplay dispatchfunc={dispatchfunc} notesarr={notesarr} />
     </div>
   )
 }

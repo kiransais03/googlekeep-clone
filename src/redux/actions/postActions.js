@@ -21,15 +21,6 @@ export const postFetchError = (error) => {
     }
 }
 
-/*
-let initialState = {
-    loading:  false,
-    data: [],
-    error: null
-}
-
-*/
-
 export function fetchPost(){
     return function(dispatch){
         dispatch(postFetching())

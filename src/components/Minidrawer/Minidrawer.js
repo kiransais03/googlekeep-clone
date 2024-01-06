@@ -1,4 +1,4 @@
-import * as React from 'react';
+import  React,{useContext} from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -18,6 +18,9 @@ import Archiveicon from "../../svg/archives.svg";
 import Trashicon from "../../svg/trash.svg";
 import Searchicon from "../../svg/searchicon.svg";
 import Plusicon from "../../svg/plusicon.svg";
+
+import { useNavigate } from 'react-router-dom';
+import Googlekeepcontext from '../../context/Googlekeepcontext';
 
 const drawerWidth = 240;
 
@@ -64,6 +67,8 @@ export default function Minidrawer() {
 
  const menuiconsarr = [Plusicon,Notesicon,Searchicon,Editlablesicon,Archiveicon,Trashicon]
 
+  let contextobj = useContext(Googlekeepcontext);
+
   const [open, setOpen] = React.useState(false);
   const [notclose, setNotclose] = React.useState(false);
 
@@ -78,7 +83,22 @@ export default function Minidrawer() {
         }
     }
   };
+  
+    let navigate = useNavigate();
 
+       const newnotefunc = ()=>{
+            navigate('/');
+            contextobj.setCreatenotefocused(true)
+         }
+
+  const handledraweritemclick = (text)=>{
+     switch (text) {
+      case "Create New Note" : newnotefunc();
+      break;
+
+      default : return ;
+     }
+  }
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -104,13 +124,14 @@ export default function Minidrawer() {
         <Divider />
         <List>
           {['Create New Note','Notes', 'Search Notes', 'Edit Labels','Archive','Trash'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }} onMouseEnter={handleDrawer} onMouseLeave={handleDrawer}>
+            <ListItem key={text} disablePadding sx={{ display: 'block' }} onClick={()=>{handledraweritemclick(text)}} onMouseEnter={handleDrawer} onMouseLeave={handleDrawer}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
+                // onClick={()=>{console.log("hi clicked")}
               >
                 <ListItemIcon
                   sx={{

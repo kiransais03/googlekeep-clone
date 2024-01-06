@@ -1,0 +1,55 @@
+.note-input {
+    color: black;
+    border: none;
+    padding: 0.2rem;
+    border-radius: 0.5rem;
+    margin: 0.6rem;
+}
+
+.note-input::placeholder {
+    color: grey;
+    font-weight: 500;
+}
+
+.createnoteinput::placeholder {
+    font-size: 18px;
+}
+
+.note-input:focus {
+    background-color: white;
+    outline: none;
+}
+
+.noteui {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0 auto;
+    width: fit-content;
+    min-width: 35vw;
+    border: 3px solid #eff3f6;
+    border-radius: 0.5rem;
+}
+
+.notetitlerow {
+    display: flex;
+    justify-content: space-between;
+}
+
+textarea {
+    resize: none;
+    overflow: hidden;
+    height: fit-content;
+}
+
+@media screen and (max-width:440px) {
+.noteui {
+    margin: 0 0 0 50px;
+}
+    
+}
+
+.notebtnrow {
+    display: flex;
+    justify-content: space-between;
+}
