@@ -18,6 +18,7 @@ import Archiveicon from "../../svg/archives.svg";
 import Trashicon from "../../svg/trash.svg";
 import Searchicon from "../../svg/searchicon.svg";
 import Plusicon from "../../svg/plusicon.svg";
+import Viewlabelsicon from "../../svg/viewlabelsicon.svg"
 
 import { useNavigate } from 'react-router-dom';
 import Googlekeepcontext from '../../context/Googlekeepcontext';
@@ -90,7 +91,7 @@ export default function Minidrawer({handleClickOpen}) {
        const newnotefunc = ()=>{
             navigate('/');
             contextobj.setCreatenotefocused(true)
-         }
+        }
 
         const gotoarchivepage = ()=>{
           navigate('/archive');
@@ -110,6 +111,19 @@ export default function Minidrawer({handleClickOpen}) {
             handleDrawer(false);
         }
 
+        const openLabeledview = (text)=>{
+          navigate(text)
+        }
+
+        const focusSearchbar = ()=>{
+           navigate('/');
+           const focussearchInputbox =()=>{
+            document.getElementsByClassName('search-input')[0].focus();
+          } 
+          focussearchInputbox()
+
+        }
+
   const handledraweritemclick = (text)=>{
      switch (text) {
       case "Create New Note" : newnotefunc();
@@ -127,7 +141,10 @@ export default function Minidrawer({handleClickOpen}) {
       case "Edit Labels" : openEditlabels();
       break;
 
-      default : return ;
+      case "Search Notes" : focusSearchbar();
+      break;
+
+      default : openLabeledview(text.toLowerCase())
      }
 
   }
@@ -144,6 +161,10 @@ export default function Minidrawer({handleClickOpen}) {
       }
   }
 
+  let labelnamesarr = contextobj.labelsarr.map((labelObj)=>{
+    return labelObj.labelname;
+  })
+
   return (
     <Box sx={{ display: 'flex' }}>
       
@@ -155,7 +176,7 @@ export default function Minidrawer({handleClickOpen}) {
         </div>
         <Divider />
         <List>
-          {['Create New Note','Notes', 'Search Notes', 'Edit Labels','Archive','Trash'].map((text, index) => (
+          {['Create New Note','Notes', 'Search Notes', 'Edit Labels','Archive','Trash',...labelnamesarr].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }} onClick={()=>{handledraweritemclick(text);handleClick(open)}} onMouseEnter={handleDrawer} onMouseLeave={handleDrawer}>
               <ListItemButton
                 sx={{
@@ -172,7 +193,7 @@ export default function Minidrawer({handleClickOpen}) {
                     justifyContent: 'center',
                   }}
                 >
-                    <img width="25px" height="25px" src={menuiconsarr[index]} alt="icon"/>
+                    <img width="25px" height="25px" src={menuiconsarr.length>index?menuiconsarr[index]:Viewlabelsicon} alt="icon"/>
                 </ListItemIcon>
                 <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>

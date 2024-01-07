@@ -44,6 +44,7 @@ function Modal({open,setOpen}) {
         <DialogContent>
           <div>
           <Roundbutton namecomp={<img width="20px" src={plusicon} alt='plus'/>} clickfunction={handleAdd}/>
+          Create Label
           {contextobj.labelsarr.map((labelObj,index)=>{
            return (<Lableinput key={index} labelobj={labelObj} labelcurrid={contextobj.labelcurrid} setLabelcurrid={contextobj.setLabelcurrid}/>)
           })}

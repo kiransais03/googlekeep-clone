@@ -1,14 +1,17 @@
 import React, { useEffect, useState,useContext } from "react";
 import Note from "../Note/Note";
+import Googlekeepcontext from "../../context/Googlekeepcontext";
 
 function Notesdisplay({ dispatchfunc, notesarr }) {
 
   let [nopinned,setNopinned] = useState(true);
   let [noothers,setnoothers] = useState(true);
 
+  let contextobj = useContext(Googlekeepcontext);
+
   let [refresh,setRefresh] = useState([]);
 
-  // console.log("Nopinnedrerender")
+  console.log("search",contextobj.search)
 
   const hasPinnedNote = notesarr.some((noteObj) => noteObj.pinselected && !noteObj.archived);
   const hasOthers = notesarr.some((noteObj) => !noteObj.pinselected && !noteObj.archived);
@@ -32,10 +35,28 @@ function Notesdisplay({ dispatchfunc, notesarr }) {
       setnoothers(true)
     }
   },[refresh])
-  
+
+  if(contextobj.search) {
+    return (
+      <div style={{display:"flex",flexDirection:"column",rowGap:"10px"}}>
+        <div style={{display:"flex",flexDirection:"column",rowGap:"10px"}}>
+       Search Results
+      {notesarr.map((noteObj, index) => {
+        //Search to find the from Title of Note or Text of NOte
+        if(noteObj.title.search(contextobj.search)!==-1 || noteObj.text.search(contextobj.search)!==-1) {
+           return <Note key={index} setRefresh={setRefresh} dispatchfunc={dispatchfunc} noteObj={noteObj} />;
+        }
+      })}
+      </div>
+       
+      </div>
+      
+    );
+  }
 
   return (
     <div style={{display:"flex",flexDirection:"column",rowGap:"10px"}}>
+
       <div style={{display:"flex",flexDirection:"column",rowGap:"10px"}}>
        Pinned
       {notesarr.map((noteObj, index) => {

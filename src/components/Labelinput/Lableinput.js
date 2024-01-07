@@ -1,4 +1,5 @@
 import React,{useState,useContext} from 'react'
+import {toast} from "react-toastify";
 
 import Googlekeepcontext from '../../context/Googlekeepcontext';
 import Roundbutton from '../Roundbutton/Roundbutton';
@@ -19,13 +20,23 @@ function Lableinput({labelobj,labelcurrid,setLabelcurrid}) {
       id: labelobj.id,
       obj: { id: labelobj.id,labelname:editlabel}
     });
+    toast.success("Label Saved")
+  };
+
+  const handleDelete = () => {
+    contextobj.dispatchlabelfunc({
+      type: "DELETE_DATA",
+      id: labelobj.id
+    });
+    toast.success("Label Deleted")
+    console.log("id",labelobj.id)
   };
 
   return (
     <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-        <Roundbutton namecomp={<img width="20px" src={trashicon} alt='trash'/>} clickfunction={()=>{}}/>
-        <input className='note-input' type="text" placeholder="Label" value={editlabel} onChange={(e)=> {setEditlabel(e.target.value)}}/>
-        <Roundbutton namecomp={<img width="20px" src={tickicon} alt='tick'/>} styles={{fontWeight:"400",opacity:"0.6"}} clickfunction={handleSave}/>
+        <Roundbutton namecomp={<img width="20px" src={trashicon} alt='trash'/>} clickfunction={handleDelete}/>
+        <input className='note-input' type="text" placeholder="Enter Label Name" value={editlabel} onChange={(e)=> {setEditlabel(e.target.value)}}/>
+        <Roundbutton namecomp={<img width="20px" src={tickicon} alt='tick'/>} styles={{fontWeight:"400",opacity:"0.5"}} clickfunction={handleSave}/>
     </div>
   )
 }

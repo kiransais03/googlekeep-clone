@@ -13,6 +13,7 @@ function Note({ noteObj,setRefresh }) {
   let [editarchived,setEditarchived] = useState(noteObj.archived);
   let [edittrashed,setEdittrashed] = useState(noteObj.trashed);
   let [editnotebgcolor,setEditnotebgcolor] = useState(noteObj.notebgcolor);
+  let [editselectedlabels,setEditselectedlabels] = useState(noteObj.labels)
 
   let contextobj = useContext(Googlekeepcontext);
 
@@ -32,21 +33,21 @@ function Note({ noteObj,setRefresh }) {
 
   useEffect(()=>{
     handleSave();
-  },[editpinselected,editarchived,edittrashed])
+  },[editpinselected,editarchived,edittrashed,editselectedlabels])
 
 
   const handleSave = () => {
     contextobj.dispatchfunc({
       type: "EDIT_DATA",
       id: noteObj.id,
-      obj: { id: noteObj.id,title:edittitle, text: edittext,pinselected:editpinselected,archived:editarchived,trashed:edittrashed,notebgcolor:editnotebgcolor }
+      obj: { id: noteObj.id,title:edittitle, text: edittext,pinselected:editpinselected,archived:editarchived,trashed:edittrashed,notebgcolor:editnotebgcolor,labels: editselectedlabels}
     });
     setNotefocused(false);
   };
 
     return (
       <div style={{width:"fit-content",margin:"0 auto"}} onMouseOver={()=>{setNotefocused(true)}} onMouseLeave={()=>{setNotefocused(false)}}>
-        <Noteuicomp notefocused={notefocused} notebgcolor={editnotebgcolor} setNotebgcolor={setEditnotebgcolor} setEditarchived={setEditarchived} inputtitle={edittitle} handleclose={handleSave} setEdittrashed={setEdittrashed} setInputtitle={setEditTitle} inputtext={edittext} setInputtext={setEdittext} pinselected={editpinselected} handleDelete={handleDelete} setPinselected={setEditpinselected}/>
+        <Noteuicomp notefocused={notefocused} selectedlabels={editselectedlabels} setSelectedlabels={setEditselectedlabels} notebgcolor={editnotebgcolor} setNotebgcolor={setEditnotebgcolor} setEditarchived={setEditarchived} inputtitle={edittitle} handleclose={handleSave} setEdittrashed={setEdittrashed} setInputtitle={setEditTitle} inputtext={edittext} setInputtext={setEdittext} pinselected={editpinselected} handleDelete={handleDelete} setPinselected={setEditpinselected}/>
       </div>
     );
   }

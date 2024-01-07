@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useRef, useState,useContext} from "react";
 import "./navbar-styles.css";
 
 import Hamburger from  "../../svg/hamburger.svg";
@@ -8,10 +8,11 @@ import Keeplogo from "../../images/keep.png";
 
 import Searchinput from "../Input/Searchinput";
 import Roundbutton from "../Roundbutton/Roundbutton";
+import Googlekeepcontext from "../../context/Googlekeepcontext";
 
 function Navbar () {
 
-  const [search,setSearch] = useState("");
+  let contextobj = useContext(Googlekeepcontext);
 
    const focussearchInputbox =()=>{
      document.getElementsByClassName('search-input')[0].focus();
@@ -25,7 +26,7 @@ function Navbar () {
         </div>
         <div className="navcentre">
           <button className="searchiconbtn" onClick={focussearchInputbox}><img src={Searchicon} alt="find"/></button> 
-          <Searchinput type={"search"} placeholder={"Search"} state={search} setState={setSearch}/>
+          <Searchinput type={"search"} placeholder={"Search"} state={contextobj.search} setState={contextobj.setSearch}/>
         </div>
         <div className="navright">
           <Roundbutton namecomp={<img src={Settingsicon} alt="settings"/>} />

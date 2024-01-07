@@ -3,11 +3,11 @@ import Googlekeepcontext from "./Googlekeepcontext";
 
 const GooglekeepProvider = (props)=>{
 
-    let [currId, setCurrId] = useState(1);
+    let [currId, setCurrId] = useState(2);
 
-    let [labelcurrid,setLabelcurrid] = useState(1);
+    let [labelcurrid,setLabelcurrid] = useState(2);
 
-    let initialLabelsarr = [{id:1,labelname:"#Label1"}];
+    let initialLabelsarr = [{id:1,labelname:"Work"},{id:2,labelname:"Games"}];
 
     let [labelsarr, dispatchlabelfunc] = useReducer(reducerlabelfunc, initialLabelsarr);
 
@@ -40,8 +40,8 @@ const GooglekeepProvider = (props)=>{
   }
 
 
-    let intialData = [{ id: 1,title:"Note 1", text: "Hi World",pinselected:false,archived:false,trashed:false,notebgcolor:"#a257ff"},
-    { id: 2,title:"Note 85", text: "Lenovo",pinselected:true,archived:false,trashed:false,notebgcolor:"#26f2ca"}];
+    let intialData = [{ id: 1,title:"Note 1", text: "Hi World",pinselected:false,archived:false,trashed:false,notebgcolor:"#a257ff",labels:["Work"]},
+    { id: 2,title:"Note 85", text: "Lenovo",pinselected:true,archived:false,trashed:false,notebgcolor:"#ffffff",labels:["Work","Games"]}];
 
     let [createnotefocused,setCreatenotefocused] = useState(false);
     // let [contextnotesarr,setContextnotesarr] = useState([]);
@@ -63,7 +63,8 @@ const GooglekeepProvider = (props)=>{
               pinselected:action.pinselected,
               archived : action.archived,
               trashed : action.trashed,
-              notebgcolor: action.notebgcolor
+              notebgcolor: action.notebgcolor,
+              labels : action.labels
             }
           ];
   
@@ -84,6 +85,8 @@ const GooglekeepProvider = (props)=>{
       }
     }
 
+    const [search,setSearch] = useState("");
+
     return (<Googlekeepcontext.Provider value={
           { createnotefocused:createnotefocused,
             setCreatenotefocused:setCreatenotefocused,
@@ -94,7 +97,9 @@ const GooglekeepProvider = (props)=>{
             labelsarr : labelsarr,
             dispatchlabelfunc : dispatchlabelfunc,
             setLabelcurrid : setLabelcurrid,
-            labelcurrid : labelcurrid
+            labelcurrid : labelcurrid,
+            search :search,
+            setSearch:setSearch
           }
         }>
             {props.children};

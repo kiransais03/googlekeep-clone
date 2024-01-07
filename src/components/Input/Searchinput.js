@@ -1,10 +1,13 @@
 import React from 'react'
 import "../Input/searchinput-styles.css";
+import { useNavigate } from 'react-router-dom';
 
 function Searchinput({type,placeholder,state,setState}) {
+
+  let navigate = useNavigate();
   
   return (
-    <input className='search-input' type={type} placeholder={placeholder} value={state} onChange={(e)=>{setState(e.target.value)}}/>
+    <input onFocus={()=>{navigate('/')}} className='search-input' type={type} placeholder={placeholder} value={state} onChange={(e)=>{setState(e.target.value)}}/>
     )
 }
 
