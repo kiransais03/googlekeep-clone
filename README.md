@@ -22,7 +22,7 @@
 
 --Seach Notes
 
---Special View OF Labeled Notes(Sir,Some issues in this I am trying to fix them)
+--Special View OF Labeled Notes(Sir,Some rendering issue in Labels component I am trying to fix them)
 
 ### Steps Required To Run Applications :
 
