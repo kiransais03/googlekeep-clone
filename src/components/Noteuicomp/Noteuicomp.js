@@ -56,8 +56,8 @@ function Noteuicomp({notefocused,inputtitle,setInputtitle,selectedlabels,setSele
         </div>
         <div style={{display:"flex",justifyContent:"flex-start",paddingLeft:"10px",columnGap:"5px"}}>
           {selectedlabels && selectedlabels.map((label,index)=>{
-             return (<div>
-              <Roundbutton key={index} styles={{backgroundColor:notebgcolor,fontSize:"12px",border:"1px solid black",padding:"3px"}} namecomp={`${label} x`} clickfunction={()=>{setSelectedlabels((state)=>{return state.filter((elem)=>{return elem!==label})})}}/>
+             return (<div key={index}>
+              <Roundbutton styles={{backgroundColor:notebgcolor,fontSize:"12px",border:"1px solid black",padding:"3px"}} namecomp={`${label} x`} clickfunction={()=>{setSelectedlabels((state)=>{return state.filter((elem)=>{return elem!==label})})}}/>
              </div>)
           })}
         </div>

@@ -1,5 +1,6 @@
 import React,{useState,useReducer} from "react";
 import Googlekeepcontext from "./Googlekeepcontext";
+import { toast } from "react-toastify";
 
 const GooglekeepProvider = (props)=>{
 
@@ -87,6 +88,10 @@ const GooglekeepProvider = (props)=>{
 
     const [search,setSearch] = useState("");
 
+    const [refreshcontext,setRefreshcontext] = useState([]);
+
+    const [currnamelabelnotesarr,setCurrnamelabelnotesarr] = useState([])
+
     return (<Googlekeepcontext.Provider value={
           { createnotefocused:createnotefocused,
             setCreatenotefocused:setCreatenotefocused,
@@ -99,7 +104,11 @@ const GooglekeepProvider = (props)=>{
             setLabelcurrid : setLabelcurrid,
             labelcurrid : labelcurrid,
             search :search,
-            setSearch:setSearch
+            setSearch:setSearch,
+            setRefreshcontext : setRefreshcontext,
+            refreshcontext : refreshcontext,
+            currnamelabelnotesarr :currnamelabelnotesarr,
+            setCurrnamelabelnotesarr : setCurrnamelabelnotesarr
           }
         }>
             {props.children};

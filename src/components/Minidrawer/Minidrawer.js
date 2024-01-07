@@ -112,7 +112,9 @@ export default function Minidrawer({handleClickOpen}) {
         }
 
         const openLabeledview = (text)=>{
-          navigate(text)
+          // navigate('/');
+          contextobj.setRefreshcontext([]);
+          navigate(text);
         }
 
         const focusSearchbar = ()=>{
@@ -168,7 +170,7 @@ export default function Minidrawer({handleClickOpen}) {
   return (
     <Box sx={{ display: 'flex' }}>
       
-      <Drawer variant="permanent" open={open}>
+      <Drawer variant="permanent" open={open} onClick={()=>{handleClick(open)}}>
         <div className='navleft'>
            <Roundbutton styles={{margin:"10px 8px"}} clickfunction={(open)=>{handleClick(open)}} namecomp={<img src={Hamburgericon} alt="menu"/>} />
            <img width="40px" height="40px" style={{zIndex:"20"}} src={Keeplogo} alt="keeplogo"/>
@@ -177,7 +179,7 @@ export default function Minidrawer({handleClickOpen}) {
         <Divider />
         <List>
           {['Create New Note','Notes', 'Search Notes', 'Edit Labels','Archive','Trash',...labelnamesarr].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }} onClick={()=>{handledraweritemclick(text);handleClick(open)}} onMouseEnter={handleDrawer} onMouseLeave={handleDrawer}>
+            <ListItem key={text} disablePadding sx={{ display: 'block' }} onClick={()=>{handledraweritemclick(text);handleClick(open)}} onMouseEnter={handleDrawer}>
               <ListItemButton
                 sx={{
                   minHeight: 48,

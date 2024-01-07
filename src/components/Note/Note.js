@@ -1,4 +1,6 @@
 import React, { useEffect, useState,useContext } from "react";
+import {toast} from "react-toastify";
+import { useLocation } from "react-router-dom";
 
 import Googlekeepcontext from "../../context/Googlekeepcontext";
 import Noteuicomp from "../Noteuicomp/Noteuicomp";
@@ -6,6 +8,10 @@ import Noteuicomp from "../Noteuicomp/Noteuicomp";
 function Note({ noteObj,setRefresh }) {
 
   // console.log(noteObj)
+
+  const location = useLocation();
+
+  // console.log("first time",noteObj)
 
   let [editpinselected,setEditpinselected] = useState(noteObj.pinselected);
   let [edittitle, setEditTitle] = useState(noteObj.title);
@@ -15,10 +21,14 @@ function Note({ noteObj,setRefresh }) {
   let [editnotebgcolor,setEditnotebgcolor] = useState(noteObj.notebgcolor);
   let [editselectedlabels,setEditselectedlabels] = useState(noteObj.labels)
 
+  // console.log("noteobjjjj",edittitle,edittext,editselectedlabels)
+
   let contextobj = useContext(Googlekeepcontext);
 
   useEffect(()=>{
     setRefresh([]);
+    console.log("first time",noteObj)
+    console.log("noteobjjjj",edittitle,edittext,editselectedlabels)
   },[editpinselected,editarchived,edittrashed,editnotebgcolor])
 
   let [notefocused,setNotefocused] = useState(false);
@@ -28,6 +38,7 @@ function Note({ noteObj,setRefresh }) {
       type: "DELETE_DATA",
       id: noteObj.id
     });
+    toast.success("Note Permanently Deleted")
     console.log("id",noteObj.id)
   };
 
@@ -42,12 +53,16 @@ function Note({ noteObj,setRefresh }) {
       id: noteObj.id,
       obj: { id: noteObj.id,title:edittitle, text: edittext,pinselected:editpinselected,archived:editarchived,trashed:edittrashed,notebgcolor:editnotebgcolor,labels: editselectedlabels}
     });
+    if(edittrashed && location.pathname!=="/trash")
+    {
+      // toast.success("Note Moved To Trash");
+    }
     setNotefocused(false);
   };
 
     return (
       <div style={{width:"fit-content",margin:"0 auto"}} onMouseOver={()=>{setNotefocused(true)}} onMouseLeave={()=>{setNotefocused(false)}}>
-        <Noteuicomp notefocused={notefocused} selectedlabels={editselectedlabels} setSelectedlabels={setEditselectedlabels} notebgcolor={editnotebgcolor} setNotebgcolor={setEditnotebgcolor} setEditarchived={setEditarchived} inputtitle={edittitle} handleclose={handleSave} setEdittrashed={setEdittrashed} setInputtitle={setEditTitle} inputtext={edittext} setInputtext={setEdittext} pinselected={editpinselected} handleDelete={handleDelete} setPinselected={setEditpinselected}/>
+        <Noteuicomp key={noteObj.id} notefocused={notefocused} selectedlabels={editselectedlabels} setSelectedlabels={setEditselectedlabels} notebgcolor={editnotebgcolor} setNotebgcolor={setEditnotebgcolor} setEditarchived={setEditarchived} inputtitle={edittitle} handleclose={handleSave} setEdittrashed={setEdittrashed} setInputtitle={setEditTitle} inputtext={edittext} setInputtext={setEdittext} pinselected={editpinselected} handleDelete={handleDelete} setPinselected={setEditpinselected}/>
       </div>
     );
   }

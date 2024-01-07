@@ -4,8 +4,6 @@ import { useLocation } from 'react-router-dom';
 import Googlekeepcontext from '../../context/Googlekeepcontext';
 import Note from '../../components/Note/Note';
 
-let currnamelabelnotesarr=[];
-
 function Labelnotespage() {
 
     const location = useLocation();
@@ -14,7 +12,7 @@ function Labelnotespage() {
 
     const [labelpagename,setLabelpagename] = useState("");
 
-    const [currnamelabelnotesarr,setCurrnamelabelnotesarr] = useState([])
+    // const [currnamelabelnotesarr,setCurrnamelabelnotesarr] = useState([])
 
     let [refresh,setRefresh] = useState([]);
 
@@ -22,21 +20,26 @@ function Labelnotespage() {
        let path = location.pathname;
        let newPath = path.split("").slice(1).join("").toUpperCase();
        setLabelpagename(newPath);
-       let temparr = contextobj.notesarr.map((noteObj, index)=>{
+       let temparr = contextobj.notesarr.filter((noteObj, index)=>{
           if(noteObj.labels.some((elem)=> elem.toUpperCase()===newPath ))
           {
-            return noteObj;
+            return true;
+          }
+          else {
+            return false;
           }
        })
-       setCurrnamelabelnotesarr([...temparr])
-    },[refresh])
+       contextobj.setCurrnamelabelnotesarr([...temparr]);
+    },[contextobj.refreshcontext])
+
+    console.log("Noteobj from *",labelpagename,contextobj.notesarr,contextobj.currnamelabelnotesarr)
 
   return (
     <div style={{textAlign:"center",margin:"10px"}}>
     <div style={{display:"flex",flexDirection:"column",rowGap:"10px"}}>
-     {labelpagename} - Labelled Notes
-    {currnamelabelnotesarr && currnamelabelnotesarr.map((noteObj, index) => {
-      // if(!noteObj.trashed) {
+    Label - {labelpagename}
+    {contextobj.currnamelabelnotesarr && contextobj.currnamelabelnotesarr.map((noteObj, index) => {
+      console.log("rendering comps",index,noteObj)
       return <Note key={index} setRefresh={setRefresh} dispatchfunc={contextobj.dispatchfunc} noteObj={noteObj} />;
       // }
     })}
