@@ -20,6 +20,10 @@
 
 --Delete and Archive Notes
 
+--Seach Notes
+
+--Special View OF Labeled Notes(Sir,Some issues in this I am trying to fix them)
+
 ### Steps Required To Run Applications :
 
 #### Frontend -React :
