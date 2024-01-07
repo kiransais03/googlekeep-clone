@@ -10,7 +10,7 @@
 
 ### Features Implemented in this App :
 
---This is Google Keep Clone it is a Note-taking service
+--This is Google Keep Clone it is a Note-taking service for Web (Optimised For Mobile Usage)
 
 --Hamburger menu with options Create Note,Search notes,Archives,Edit Labels,Trash
 
