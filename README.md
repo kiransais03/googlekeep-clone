@@ -20,9 +20,9 @@
 
 --Delete and Archive Notes
 
---Seach Notes
+--Seach Notes (Search to find the from Title of Note or Text of Note)
 
---Special View OF Labeled Notes(Sir,Some issues in this I am trying to fix them)
+--Special View OF Labeled Notes (Error Resolved)
 
 ### Steps Required To Run Applications :
 

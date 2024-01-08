@@ -28,7 +28,7 @@ function Note({ noteObj,setRefresh }) {
   useEffect(()=>{
     setRefresh([]);
     console.log("first time",noteObj)
-    console.log("noteobjjjj",edittitle,edittext,editselectedlabels)
+    // console.log("noteobjjjj",edittitle,edittext,editselectedlabels);
   },[editpinselected,editarchived,edittrashed,editnotebgcolor])
 
   let [notefocused,setNotefocused] = useState(false);
@@ -53,15 +53,12 @@ function Note({ noteObj,setRefresh }) {
       id: noteObj.id,
       obj: { id: noteObj.id,title:edittitle, text: edittext,pinselected:editpinselected,archived:editarchived,trashed:edittrashed,notebgcolor:editnotebgcolor,labels: editselectedlabels}
     });
-    if(edittrashed && location.pathname!=="/trash")
-    {
-      // toast.success("Note Moved To Trash");
-    }
     setNotefocused(false);
   };
 
     return (
       <div style={{width:"fit-content",margin:"0 auto"}} onMouseOver={()=>{setNotefocused(true)}} onMouseLeave={()=>{setNotefocused(false)}}>
+        {console.log("noteobjjjj",edittitle,edittext,editselectedlabels)}
         <Noteuicomp key={noteObj.id} notefocused={notefocused} selectedlabels={editselectedlabels} setSelectedlabels={setEditselectedlabels} notebgcolor={editnotebgcolor} setNotebgcolor={setEditnotebgcolor} setEditarchived={setEditarchived} inputtitle={edittitle} handleclose={handleSave} setEdittrashed={setEdittrashed} setInputtitle={setEditTitle} inputtext={edittext} setInputtext={setEdittext} pinselected={editpinselected} handleDelete={handleDelete} setPinselected={setEditpinselected}/>
       </div>
     );

@@ -8,7 +8,8 @@ import pinselectedicon from "../../svg/pinselected.svg";
 import archivesicon from "../../svg/archives.svg";
 import trashicon from "../../svg/trash.svg"
 import restoreicon from "../../svg/restoreicon.svg"
-import deleteforevericon from "../../svg/deleteforevericon.svg"
+import deleteforevericon from "../../svg/deleteforevericon.svg";
+import backgroundcoloricon from "../../svg/backgroundcoloricon.svg"
 
 import Roundbutton from "../Roundbutton/Roundbutton";
 import { useLocation } from 'react-router-dom';
@@ -64,8 +65,9 @@ function Noteuicomp({notefocused,inputtitle,setInputtitle,selectedlabels,setSele
            <textarea className='note-input' style={{fontWeight:500,fontSize:"1rem",height:`calc(${(parseInt(inputtext.length/34)) * 16}px + 40px)`,backgroundColor:notebgcolor}} placeholder="Take a note..." value={inputtext} onChange={(e)=>{setInputtext(e.target.value)}}/>
        <div className='notebtnrow' style={notefocused?{display:'flex'}:{display:"none"}}>
         <div style={{display:"flex",alignItems:"center"}}>
-          {/* <Roundbutton disabled={disabled} namecomp={<img width="20px" style={{backgroundColor:notebgcolor}} src={backgroundcoloricon} alt='bgcoloricon'/>} clickfunction={handleColorpicker}/> */}
-          <input type="color" style={{borderRadius:"5px"}} value={notebgcolor} onChange={(e)=>{setNotebgcolor(e.target.value)}}/>
+          {/* <Roundbutton disabled={disabled} namecomp={<img width="20px" style={{backgroundColor:notebgcolor}} src={backgroundcoloricon} alt='bgcoloricon'/>}/> */}
+          <img width="20px" style={{backgroundColor:notebgcolor}} src={backgroundcoloricon} alt='bgcoloricon'/> ᐅᐅ
+          <input type="color" style={{borderRadius:"5px",cursor:"pointer"}} value={notebgcolor} onChange={(e)=>{setNotebgcolor(e.target.value)}}/>
           <Roundbutton styles={{backgroundColor:notebgcolor}} disabled={disabled} namecomp={<img width="20px" src={archivesicon} alt='archive'/>} clickfunction={()=>{setEditarchived((state)=>{if(state){return false} else {return true}})}}/>
           <Roundbutton styles={{backgroundColor:notebgcolor}}  namecomp={<img width="20px" src={disabled?deleteforevericon:trashicon} alt='trash'/>} clickfunction={()=>{setEdittrashed(true);handleDeleteforever()}}/>
           <Menulist selectedlabels={selectedlabels} setSelectedlabels={setSelectedlabels}/>

@@ -43,7 +43,7 @@ function Notesdisplay({ dispatchfunc, notesarr }) {
        Search Results
       {notesarr.map((noteObj, index) => {
         //Search to find the from Title of Note or Text of NOte
-        if(noteObj.title.search(contextobj.search)!==-1 || noteObj.text.search(contextobj.search)!==-1) {
+        if(noteObj.title.toLowerCase().search(contextobj.search.toLowerCase())!==-1 || noteObj.text.toLowerCase().search(contextobj.search.toLowerCase())!==-1) {
            return <Note key={index} setRefresh={setRefresh} dispatchfunc={dispatchfunc} noteObj={noteObj} />;
         }
       })}

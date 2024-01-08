@@ -112,7 +112,7 @@ export default function Minidrawer({handleClickOpen}) {
         }
 
         const openLabeledview = (text)=>{
-          // navigate('/');
+          contextobj.setCurrnamelabelnotesarr([]);
           contextobj.setRefreshcontext([]);
           navigate(text);
         }

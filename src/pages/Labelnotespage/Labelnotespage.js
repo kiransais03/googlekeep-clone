@@ -12,9 +12,12 @@ function Labelnotespage() {
 
     const [labelpagename,setLabelpagename] = useState("");
 
+    let [nogrouplabelnotes,setNogrouplabelnotes] = useState(true);
+
     // const [currnamelabelnotesarr,setCurrnamelabelnotesarr] = useState([])
 
     let [refresh,setRefresh] = useState([]);
+
 
     useEffect(()=>{
        let path = location.pathname;
@@ -29,20 +32,30 @@ function Labelnotespage() {
             return false;
           }
        })
-       contextobj.setCurrnamelabelnotesarr([...temparr]);
-    },[contextobj.refreshcontext])
 
-    console.log("Noteobj from *",labelpagename,contextobj.notesarr,contextobj.currnamelabelnotesarr)
+       if (temparr.length>0) {
+         console.log(temparr,"temparr")
+        setNogrouplabelnotes(false);
+      }
+      else {
+        setNogrouplabelnotes(true)
+      }
+       contextobj.setCurrnamelabelnotesarr(temparr);
+    },[contextobj.refreshcontext,contextobj.notesarr])
+
+    console.log("Noteobj from *",labelpagename,contextobj.notesarr,contextobj.currnamelabelnotesarr);
 
   return (
     <div style={{textAlign:"center",margin:"10px"}}>
     <div style={{display:"flex",flexDirection:"column",rowGap:"10px"}}>
-    Label - {labelpagename}
+    Label Group- {labelpagename}
     {contextobj.currnamelabelnotesarr && contextobj.currnamelabelnotesarr.map((noteObj, index) => {
       console.log("rendering comps",index,noteObj)
+      if(!noteObj.trashed) {
       return <Note key={index} setRefresh={setRefresh} dispatchfunc={contextobj.dispatchfunc} noteObj={noteObj} />;
-      // }
+      }
     })}
+    {nogrouplabelnotes && <p style={{color:"grey"}}>No {labelpagename} Label Notes Available</p>}
     </div>
   </div>
   )
