@@ -13,8 +13,8 @@ function Notesdisplay({ dispatchfunc, notesarr }) {
 
   console.log("search",contextobj.search)
 
-  const hasPinnedNote = notesarr.some((noteObj) => noteObj.pinselected && !noteObj.archived);
-  const hasOthers = notesarr.some((noteObj) => !noteObj.pinselected && !noteObj.archived);
+  const hasPinnedNote = notesarr.some((noteObj) => noteObj.pinselected && !noteObj.archived && !noteObj.trashed);
+  const hasOthers = notesarr.some((noteObj) => !noteObj.pinselected && !noteObj.archived  && !noteObj.trashed);
 
   useEffect(()=>{
     if (hasPinnedNote) {
