@@ -4,7 +4,7 @@ import Note from '../../components/Note/Note';
 
 function Trashpage() {
 
-    let contextobj = useContext(Googlekeepcontext);
+let contextobj = useContext(Googlekeepcontext);
 
 let [refresh,setRefresh] = useState([]);
 
@@ -15,12 +15,11 @@ const hasTrash = contextobj.notesarr.some((note)=>{return note.trashed});
 useEffect(()=>{
   if (hasTrash) {
     setNotrash(false);
-    // console.log("Refreshed");
   }
   else {
     setNotrash(true)
   }
-},[refresh])
+},)
 
   return (
     <div style={{textAlign:"center",margin:"10px"}}>

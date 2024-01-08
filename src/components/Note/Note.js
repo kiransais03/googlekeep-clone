@@ -7,11 +7,8 @@ import Noteuicomp from "../Noteuicomp/Noteuicomp";
 
 function Note({ noteObj,setRefresh }) {
 
-  // console.log(noteObj)
-
   const location = useLocation();
 
-  // console.log("first time",noteObj)
 
   let [editpinselected,setEditpinselected] = useState(noteObj.pinselected);
   let [edittitle, setEditTitle] = useState(noteObj.title);
@@ -21,14 +18,11 @@ function Note({ noteObj,setRefresh }) {
   let [editnotebgcolor,setEditnotebgcolor] = useState(noteObj.notebgcolor);
   let [editselectedlabels,setEditselectedlabels] = useState(noteObj.labels)
 
-  // console.log("noteobjjjj",edittitle,edittext,editselectedlabels)
-
   let contextobj = useContext(Googlekeepcontext);
 
   useEffect(()=>{
     setRefresh([]);
     console.log("first time",noteObj)
-    // console.log("noteobjjjj",edittitle,edittext,editselectedlabels);
   },[editpinselected,editarchived,edittrashed,editnotebgcolor])
 
   let [notefocused,setNotefocused] = useState(false);
